@@ -1,4 +1,4 @@
-# Bluetooth Activity Scanner
+# Bluetooth Activity Scanner with Prometheus Node
 
 Hardware: Raspberry Pi 4
 
