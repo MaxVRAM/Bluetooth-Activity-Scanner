@@ -1,0 +1,51 @@
+version: '3'
+
+volumes:
+    prometheus_data: {}
+
+services:
+
+  # Local Prometheus server
+  prometheus:
+    image: prom/prometheus:v2.30.3
+    container_name: prometheus
+    volumes:
+      - ./:/etc/prometheus
+      - prometheus_data:/prometheus
+      - /etc/localtime:/etc/localtime:ro
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    ports:
+      - '9090:9090'
+
+  # Node exporter for reporting host metrics
+  nodeexporter:
+    image: prom/node-exporter:v1.2.2
+    container_name: nodeexporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+      - /etc/localtime:/etc/localtime:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    restart: unless-stopped
+    ports:
+      - '9100:9100'
+
+  # Push gateway for arbitrarily updated metrics from scripts
+  pushgateway:
+    image: prom/pushgateway:v1.4.1
+    container_name: pushgateway
+    restart: unless-stopped
+    ports:
+      - '9091:9091'
