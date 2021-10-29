@@ -6,13 +6,13 @@ Reports surrounding Bluetooth devices and aggregated change of individual BLE de
 It then sends the values to a local Prometheus server via push gateway.
 
 
-1. Clone the Repo
+1. Clone the Repo:
 
 ```bash
 git clone https://github.com/MaxVRAM/Bluetooth-Activity-Scanner.git && cd Bluetooth-Activity-Scanner
 ```
 
-2. Install the Python modules
+2. Install the Python modules:
 ```bash
 pip3 install -r requirements.txt
 ```
