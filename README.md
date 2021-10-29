@@ -24,7 +24,7 @@ sudo ufw allow 9090, 9091, 9100 proto tcp
 
 4. Deploy the Promethus stack
 ```bash
-`docker-compose up -d`
+docker-compose up -d
 ```
 
 5. Test the Prometheus server:
