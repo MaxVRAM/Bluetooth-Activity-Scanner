@@ -7,6 +7,8 @@ from logging import INFO, DEBUG, WARN, WARNING, ERROR
 
 from prometheus_client import CollectorRegistry, push_to_gateway, Gauge
 
+from flask import Flask
+
 ### These should be moved to environment variables
 PUSH_GATEWAY = 'localhost:9091'
 PUSH_JOB = f'signifier-{platform.node()}'
@@ -94,6 +96,11 @@ observer.on_advertising_data = got_blip
 registry = CollectorRegistry()
 prom_num_devices = Gauge('signifier_num_devices', 'Number of active devices at signifier', registry=registry)
 prom_total_activity = Gauge('signifier_total_activity', 'Total activity of devices at signifier', registry=registry)
+
+
+@app.route("/")
+def page():
+    return "<p>Signifier Page"</p>
 
 
 while True:
