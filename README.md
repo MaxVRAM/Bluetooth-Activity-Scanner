@@ -29,7 +29,7 @@ docker-compose up -d
 
 5. Run the Python script:
 ```bash
-python3 bt_counter.py
+python3 ble_activity.py
 ```
 
 The server can be accessed via web brower, or as a datasource in Grafana: [http://localhost:9090](http://localhost:9090)
