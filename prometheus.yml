@@ -19,3 +19,9 @@ scrape_configs:
     honor_labels: true
     static_configs:
       - targets: ['pushgateway:9091']
+
+remote_write:
+  - url: https://prometheus-prod-10-prod-us-central-0.grafana.net/api/prom/push
+    basic_auth:
+      username: 242482
+      password: eyJrIjoiNDBmYzMxNWE0MmVkODE3ZDk4MWFjY2M4YTJmOWI2MmZjYTNiMWFmNiIsIm4iOiJzZW5zb3J0ZXN0IiwiaWQiOjU2MDA5OX0=
