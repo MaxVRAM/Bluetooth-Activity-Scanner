@@ -5,6 +5,7 @@ Hardware: Raspberry Pi 4
 Reports surrounding Bluetooth devices and aggregated change of individual BLE device signal each scan.
 It then sends the values to a local Prometheus server via push gateway.
 
+NB: requires docker, docker-compose installed on host
 
 1. Clone the Repo:
 
